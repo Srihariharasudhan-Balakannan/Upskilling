@@ -23,3 +23,12 @@ INSERT INTO employees (emp_name, salary, department) VALUES
 -- +--------+---------+--------+------------+  
 -- | 2      | Priya   | 90000  | IT         |  
 -- +--------+---------+--------+------------+  
+
+-- Solution:
+WITH ranked_table AS (
+    SELECT *, DENSE_RANK() OVER(ORDER BY salary DESC) AS salary_rank
+    FROM employees
+  )
+SELECT emp_id, emp_name, salary, department 
+FROM ranked_table
+WHERE salary_rank = 2;
