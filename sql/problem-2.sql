@@ -27,3 +27,7 @@ INSERT INTO sales_data (city, sale_date, amount) VALUES
 -- | 4       | Delhi  | 2024-02-05 |   6000 |        13000  |  
 -- +---------+--------+------------+--------+---------------+  
 
+-- Solution:
+SELECT sale_id, city, sale_date, amount, SUM(amount) OVER(PARTITION BY city ORDER BY sale_date) AS running_total 
+FROM sales_data 
+ORDER BY city DESC, sale_date, sale_id;
