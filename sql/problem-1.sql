@@ -32,3 +32,18 @@ INSERT INTO sales_table (city, sale_date, amount) VALUES
 -- | 2024-02    | Mumbai    |        9000 |
 -- | 2024-02    | Delhi     |        8500 |
 -- +------------+-----------+-------------+
+
+-- Solution:
+WITH monthly_sales AS (
+    SELECT city, DATE_FORMAT(sale_date, '%Y-%m') AS sale_month, SUM(amount) AS total_sales 
+    FROM sales_table 
+    GROUP BY city, sale_month
+),
+monthly_sales_rank AS (
+    SELECT *, DENSE_RANK() OVER(PARTITION BY sale_month ORDER BY total_sales DESC) AS sales_rank
+    FROM monthly_sales
+)
+SELECT sale_month, city, total_sales 
+FROM monthly_sales_rank 
+WHERE sales_rank <= 3
+ORDER BY sale_month, total_sales DESC, city;
