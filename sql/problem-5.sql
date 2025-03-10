@@ -17,12 +17,12 @@ INSERT INTO users (user_name, email) VALUES
 ('Rohan', 'rohan@gmail.com');  
 
 -- Expected output  
--- +----------+----------+-----------------+  
+-- +-----------+--------------------+-------+  
 -- | user_name | email              | count |  
--- +----------+----------+-----------------+  
--- | Sameer   | sameer@gmail.com   |   2   |  
--- | Rohan    | rohan@gmail.com    |   2   |  
--- +----------+----------+-----------------+  
+-- +-----------+--------------------+-------+  
+-- | Sameer    | sameer@gmail.com   |   2   |  
+-- | Rohan     | rohan@gmail.com    |   2   |  
+-- +-----------+--------------------+-------+  
 
 -- Solution: 
 WITH ranked_table AS (
