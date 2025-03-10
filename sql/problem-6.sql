@@ -24,3 +24,17 @@ INSERT INTO users (user_name, email) VALUES
 -- | 2       | Anjali   | anjali@gmail.com |  
 -- | 4       | Rohan    | rohan@gmail.com  |  
 -- +---------+----------+------------------+  
+
+-- Solution:
+WITH ranked_users AS (
+SELECT *, 
+ROW_NUMBER() OVER(PARTITION BY user_name, email ORDER BY user_id) AS unique_rank
+FROM users
+)
+DELETE FROM users 
+WHERE user_id IN (
+SELECT user_id 
+FROM ranked_users 
+WHERE unique_rank != 1
+);
+SELECT * FROM users;
