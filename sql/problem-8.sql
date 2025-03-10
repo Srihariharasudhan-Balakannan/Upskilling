@@ -25,3 +25,10 @@ INSERT INTO orders (customer_id, order_date, amount) VALUES
 -- +-------------+--------------+
 -- | 101         | 4            |
 -- +-------------+--------------+
+
+-- Solution:
+SELECT customer_id, COUNT(*) AS total_orders
+FROM orders 
+WHERE order_date >= DATE_SUB(CURRENT_DATE(), INTERVAL 6 MONTH)
+GROUP BY customer_id
+HAVING total_orders > 3;
