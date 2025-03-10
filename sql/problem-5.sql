@@ -23,3 +23,11 @@ INSERT INTO users (user_name, email) VALUES
 -- | Sameer   | sameer@gmail.com   |   2   |  
 -- | Rohan    | rohan@gmail.com    |   2   |  
 -- +----------+----------+-----------------+  
+
+-- Solution: 
+WITH ranked_table AS (
+SELECT user_name, email, COUNT(*) AS count 
+FROM users 
+GROUP BY user_name, email
+HAVING count > 1 )
+SELECT * FROM ranked_table;
