@@ -26,3 +26,11 @@ INSERT INTO employee_salary (emp_name, salary, department) VALUES
 -- | 2      | Ravi    | 70000  | IT         |  
 -- | 5      | Karan   | 70000  | IT         |  
 -- +--------+---------+--------+------------+  
+
+-- Solution:
+SELECT A.* FROM employee_salary A 
+JOIN employee_salary B 
+ON A.salary = B.salary 
+AND A.department = B.department 
+AND A.emp_name != B.emp_name 
+ORDER BY A.salary, A.emp_id;
