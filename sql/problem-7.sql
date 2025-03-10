@@ -24,3 +24,11 @@ INSERT INTO sales_data (city, sale_date, amount) VALUES
 -- | Mumbai |   8000   |   8000   |    0     |  
 -- | Delhi  |    0     |   7000   |   6000   |  
 -- +--------+----------+----------+----------+  
+
+-- Solution: 
+SELECT city,
+SUM(CASE WHEN month(sale_date) = 1 THEN amount ELSE 0 END) AS Jan_2024,
+SUM(CASE WHEN month(sale_date) = 2 THEN amount ELSE 0 END) AS Feb_2024,
+SUM(CASE WHEN month(sale_date) = 3 THEN amount ELSE 0 END) AS Mar_2024
+FROM sales_data
+GROUP BY city;
