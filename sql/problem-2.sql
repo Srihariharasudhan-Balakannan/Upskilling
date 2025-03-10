@@ -1,4 +1,4 @@
- -- Problem 2  
+-- Problem 2  
 -- Running Total of Sales for Each City  
 
 -- Create sales_data table  
